@@ -101,6 +101,8 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
 .prog span{font-size:11px;font-weight:700;color:var(--teal);white-space:nowrap}
 .q{margin-bottom:18px}
 .q[hidden]{display:none}
+#agendar[hidden]{display:none}
+#agendar.show{animation:fin .35s ease}@keyframes fin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .q>label,.q>p{display:block;font-size:13.5px;font-weight:700;margin-bottom:9px}
 .q>p small{font-weight:500;color:var(--text)}
 .q input{width:100%;height:50px;border-radius:14px;border:1px solid var(--line);background:var(--off);padding:0 14px;font:inherit;font-size:15px;color:var(--navy);outline:none;transition:border-color .2s}
@@ -190,7 +192,7 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
     </div>
   </section>
 
-  <section class="sec" id="agendar" aria-labelledby="tForm">
+  <section class="sec" id="agendar" aria-labelledby="tForm" hidden>
     <div class="sh"><div><div class="eb">Agendamento</div><h2 id="tForm">Agende sua consulta</h2></div></div>
     <form class="form" id="form" novalidate>
       <div class="prog"><div class="bar"><i id="bar"></i></div><span id="cnt">0 de 6</span></div>
@@ -266,8 +268,13 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
   send.addEventListener('click',function(e){if(send.getAttribute('aria-disabled')==='true'){e.preventDefault();var first=form.querySelector('[data-k]:not([hidden])');var miss=need().filter(function(k){return k==='Seu nome'||!ans[k];});if(miss[0]==='Seu nome'){nome.focus();}else{var q=form.querySelector('[data-k="'+miss[0]+'"]');if(q)q.scrollIntoView({behavior:'smooth',block:'center'});}}});
   form.addEventListener('submit',function(e){e.preventDefault();});
 
+
+  /* Formulário escondido até clicar em Agendar consulta */
+  function openForm(){var sec=document.getElementById('agendar');if(sec.hidden){sec.hidden=false;sec.classList.add('show');}setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'});},30);}
+  Array.prototype.forEach.call(document.querySelectorAll('a[href="#agendar"]'),function(a){a.addEventListener('click',function(e){e.preventDefault();openForm();});});
+  if(location.hash==='#agendar')openForm();
   /* Locais e temas preenchem o formulário */
-  Array.prototype.forEach.call(document.querySelectorAll('.loc'),function(b){b.addEventListener('click',function(){var c=b.getAttribute('data-city');if(c==='tele'){pick('Atendimento','Telemedicina');}else{pick('Atendimento','Presencial');pick('Cidade',c);}document.getElementById('agendar').scrollIntoView({behavior:'smooth'});});});
+  Array.prototype.forEach.call(document.querySelectorAll('.loc'),function(b){b.addEventListener('click',function(){var c=b.getAttribute('data-city');if(c==='tele'){pick('Atendimento','Telemedicina');}else{pick('Atendimento','Presencial');pick('Cidade',c);}openForm();});});
 
   /* Barra fixa */
   var fix=document.getElementById('fix'),ctas=document.querySelector('.ctas'),ag=document.getElementById('agendar');
