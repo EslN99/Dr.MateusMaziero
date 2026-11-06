@@ -655,6 +655,50 @@ h1 .fw,h2 .fw{vertical-align:2px}
 
 .idx-hero{background:linear-gradient(135deg,var(--off),var(--mint-ice));padding:48px 0 56px}.idx-hero h1{font-size:42px;margin-bottom:12px}.idx-hero p{font-size:17px;max-width:640px}
 @media(max-width:768px){.idx-hero h1{font-size:30px}}
+
+/* FLUXO DE AGENDAMENTO */
+.mmf-ov{position:fixed;inset:0;background:rgba(11,37,69,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center;padding:16px}
+.mmf-ov.on{display:flex}
+.mmf{background:#fff;color:#0B2545;width:100%;max-width:480px;max-height:92vh;overflow:auto;border-radius:22px;box-shadow:0 30px 80px rgba(11,37,69,.35);font-family:'Montserrat',sans-serif;animation:mmfin .28s ease}
+@keyframes mmfin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mmf-top{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0}
+.mmf-top b{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#1B7F8C}
+.mmf-x{width:36px;height:36px;border-radius:50%;border:1px solid #D8E6E4;background:#fff;cursor:pointer;font-size:20px;line-height:1;color:#4F6470}
+.mmf-bar{height:4px;background:#E6F2F1;border-radius:4px;margin:14px 20px 0;overflow:hidden}
+.mmf-bar i{display:block;height:100%;background:linear-gradient(90deg,#5FC1B0,#1B7F8C);border-radius:4px;transition:width .3s}
+.mmf-body{padding:20px 20px 22px}
+.mmf-q{font-size:20px;font-weight:700;line-height:1.25;margin-bottom:6px}
+.mmf-h{font-size:13px;color:#4F6470;margin-bottom:16px}
+.mmf-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mmf-opts.one{grid-template-columns:1fr}
+.mmf-o{font-family:inherit;text-align:left;font-size:14px;font-weight:600;color:#0B2545;background:#F7FAFA;border:1px solid #D8E6E4;border-radius:14px;padding:14px 14px;cursor:pointer;min-height:52px;transition:border-color .2s,background .2s}
+.mmf-o:hover,.mmf-o:focus-visible{border-color:#1B7F8C;background:#E6F2F1;outline:none}
+.mmf-nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px}
+.mmf-back{font-family:inherit;background:none;border:none;color:#1B7F8C;font-weight:600;font-size:13px;cursor:pointer;padding:6px 0}
+.mmf-skip{font-size:12px;color:#4F6470;text-decoration:underline}
+.mmf-sum{background:#F7FAFA;border:1px solid #D8E6E4;border-radius:14px;padding:14px 16px;margin-bottom:16px;display:grid;gap:8px}
+.mmf-sum div{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.mmf-sum span{color:#4F6470}
+.mmf-sum b{text-align:right}
+.mmf-go{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;border-radius:14px;background:#25D366;color:#fff;font-weight:700;font-size:15px;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+.mmf-go svg{width:20px;height:20px}
+.mmf-lgpd{font-size:11px;color:#4F6470;line-height:1.5;margin-top:12px}
+@media(max-width:560px){.mmf-ov{align-items:flex-end;padding:0}.mmf{border-radius:22px 22px 0 0;max-height:90vh}.mmf-q{font-size:18px}}
+
+/* AJUSTES REVISAO */
+.disc{display:block;margin-bottom:6px;opacity:.85}
+.p-note{background:var(--mint-ice,#E6F2F1);border-left:3px solid var(--teal,#1B7F8C);border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.55;margin-bottom:18px;color:var(--navy,#0B2545)}
+.tgrid{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:14px!important}
+.tcard b{font-size:14px}.tcard-body>span{font-size:12px}.tcard-body{padding:12px 13px 14px!important}.tcard em{font-size:10px}
+@media(max-width:1100px){.tgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:768px){.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}}
+.hero-find{margin-top:-14px;max-width:560px}
+.hero-find>b{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal,#1B7F8C);margin-bottom:10px}
+.hero-find .hf{display:flex;flex-wrap:wrap;gap:8px}
+.hero-find a{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid #D3E4E2;color:var(--navy,#0B2545);font-size:12.5px;font-weight:600;text-decoration:none;transition:border-color .2s,background .2s}
+.hero-find a:hover{border-color:var(--teal,#1B7F8C);background:#fff}
+.hero-find a.all{background:var(--navy,#0B2545);color:#fff;border-color:var(--navy,#0B2545)}
+@media(max-width:768px){.hero-find{margin-top:0}.hero-find a:nth-child(9),.hero-find a:nth-child(10){display:none}.hero-find a{height:32px;padding:0 12px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -748,9 +792,7 @@ h1 .fw,h2 .fw{vertical-align:2px}
 <div class="topbar">
   <div class="container topbar-inner">
     <div class="topbar-badges">
-      <span><svg><use href="#check"/></svg>Atendimento humanizado</span>
-      <span><svg><use href="#check"/></svg>Tecnologia de ponta</span>
-      <span><svg><use href="#check"/></svg>CRM SP 200263 | RQE 136284</span>
+      <span><svg><use href="#check"/></svg>Atendimento humanizado, cuidando de você e da sua família</span>
     </div>
     <div class="topbar-right">
       <div class="topbar-social">
@@ -809,7 +851,7 @@ h1 .fw,h2 .fw{vertical-align:2px}
       <a class="cond" href="cancer-de-prostata-psa.html" data-groups="prostata onco top todas" data-k="tumor próstata biópsia fusão psma vigilância ativa prostatectomia"><span class="cond-ico"><svg class="ico-k"><use href="#onco"/></svg></span><span class="cond-t">Câncer de próstata</span><span class="cond-d">Rastreamento, diagnóstico e vigilância ativa.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
       <a class="cond" href="psa-alterado.html" data-groups="prostata todas" data-k="psa alto antígeno prostático exame de sangue próstata"><span class="cond-ico"><svg><use href="#prostate"/></svg></span><span class="cond-t">PSA alterado</span><span class="cond-d">O que significa e quais os próximos passos.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
       <a class="cond" href="disfuncao-eretil.html" data-groups="sexual top todas" data-k="impotência queda de ereção libido desejo prótese peniana"><span class="cond-ico"><svg><use href="#prostate"/></svg></span><span class="cond-t">Disfunção erétil e queda de libido</span><span class="cond-d">Dificuldade de ereção e menor desejo sexual.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
-      <a class="cond" href="vasectomia.html" data-groups="genital top todas" data-k="esterilização contracepção masculina sem bisturi"><span class="cond-ico"><svg><use href="#male"/></svg></span><span class="cond-t">Vasectomia</span><span class="cond-d">Técnica sem bisturi, com orientação completa.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
+      <a class="cond" href="vasectomia.html" data-groups="genital top todas" data-k="esterilização contracepção masculina"><span class="cond-ico"><svg><use href="#male"/></svg></span><span class="cond-t">Vasectomia</span><span class="cond-d">Procedimento ambulatorial, com orientação completa.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
       <a class="cond" href="sangue-na-urina.html" data-groups="rins top todas" data-k="hematúria urina vermelha cistoscopia"><span class="cond-ico"><svg class="ico-k"><use href="#kidney"/></svg></span><span class="cond-t">Sangue na urina</span><span class="cond-d">Hematúria merece investigação, mesmo sem dor.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
       <a class="cond" href="infertilidade-masculina.html" data-groups="rins sexual top todas" data-k="espermograma engravidar fertilidade varicocele"><span class="cond-ico"><svg><use href="#male"/></svg></span><span class="cond-t">Infertilidade masculina</span><span class="cond-d">Avaliação do fator masculino do casal.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
       <a class="cond" href="bexiga-hiperativa-incontinencia.html" data-groups="bexiga rins prostata top todas" data-k="perda de urina escape urgência esfíncter artificial sling toxina botulínica"><span class="cond-ico"><svg class="ico-k"><use href="#bladder"/></svg></span><span class="cond-t">Incontinência e bexiga hiperativa</span><span class="cond-d">Urgência e perda de urina têm tratamento.</span><span class="cond-more">Saiba mais <svg><use href="#arrow"/></svg></span></a>
@@ -891,12 +933,13 @@ h1 .fw,h2 .fw{vertical-align:2px}
       </div>
     </div>
     <div class="footer-bottom">
+      <span class="disc">Conteúdo informativo. Não dispensa consulta médica e avaliação individualizada.</span>
       © 2026 Dr. Mateus Maziero. CRM SP 200263 | RQE 136284. Todos os direitos reservados.
     </div>
   </div>
 </footer>
 <a href="https://wa.me/5517997054588?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20pelo%20site%20do%20Dr.%20Mateus%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20agendamento%20de%20consulta." class="wa-sticky" aria-label="Falar pelo WhatsApp"><svg><use href="#wa"/></svg></a>
-<div class="mobile-cta"><a href="https://wa.me/5517997054588?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20pelo%20site%20do%20Dr.%20Mateus%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20agendamento%20de%20consulta." class="btn btn-wa"><svg><use href="#wa"/></svg>Agendar pelo WhatsApp</a></div>
+<div class="mobile-cta"><a href="https://wa.me/5517997054588?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20pelo%20site%20do%20Dr.%20Mateus%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20agendamento%20de%20consulta." class="btn btn-wa"><svg><use href="#wa"/></svg>Agendar consulta</a></div>
 <script>
 const header=document.getElementById('header');
 window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40));
@@ -924,6 +967,67 @@ hamburger.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('ope
   byTab(cur);
 })();
 
+</script>
+
+<div class="mmf-ov" id="mmfOv" aria-hidden="true"><div class="mmf" role="dialog" aria-modal="true" aria-labelledby="mmfQ">
+  <div class="mmf-top"><b>Agendar consulta</b><button type="button" class="mmf-x" id="mmfX" aria-label="Fechar">&times;</button></div>
+  <div class="mmf-bar"><i id="mmfBar"></i></div>
+  <div class="mmf-body" id="mmfBody"></div>
+</div></div>
+<script>
+/* Fluxo de agendamento por cliques: abre o WhatsApp com a mensagem pronta */
+(function(){
+  var NUM='5517997054588';
+  var ORIGEM=document.body.getAttribute('data-origem')==='instagram'?'Instagram':'site';
+  var TOPIC=document.body.getAttribute('data-topic')||'';
+  var TOPICS=['Próstata','Pedra nos rins','Disfunção erétil','Infertilidade','HPV e ISTs','Vasectomia','Postectomia (fimose)','Dor pélvica','Incontinência urinária','Sangue na urina','Câncer urológico','Outro assunto'];
+  var STEPS=[
+    {k:'Assunto',q:'O que você procura?',h:'Escolha o tema principal da consulta.',o:TOPICS},
+    {k:'Atendimento',q:'Como prefere ser atendido?',h:'A consulta pode ser presencial ou por telemedicina.',o:['Presencial','Telemedicina'],one:1},
+    {k:'Cidade',q:'Em qual cidade?',h:'Consultórios em Jundiaí, Marília e Ribeirão Preto.',o:['Jundiaí','Marília','Ribeirão Preto'],one:1,when:function(a){return a.Atendimento==='Presencial';}},
+    {k:'Convênio ou particular',q:'Atendimento por convênio ou particular?',h:'A equipe confirma as opções disponíveis.',o:['Convênio','Particular','Ainda não sei'],one:1},
+    {k:'Já é paciente',q:'Você já é paciente do Dr. Mateus?',h:'Assim a equipe organiza melhor o seu atendimento.',o:['Sim','Não, primeira consulta'],one:1}
+  ];
+  var WA='<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></svg>';
+  var ov=document.getElementById('mmfOv'),body=document.getElementById('mmfBody'),bar=document.getElementById('mmfBar');
+  var ans={},hist=[],lastFocus=null;
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function active(){return STEPS.filter(function(s){return !s.when||s.when(ans);});}
+  function link(full){
+    var m='Olá, tudo bem? Vim pelo '+ORIGEM+' do Dr. Mateus e gostaria de agendar uma consulta.';
+    if(full){m+='\n';active().forEach(function(s){if(ans[s.k])m+='\n'+s.k+': '+ans[s.k];});}
+    return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(m);
+  }
+  function render(){
+    var st=active(),i=-1;
+    for(var n=0;n<st.length;n++){if(!ans[st[n].k]){i=n;break;}}
+    var total=st.length+1,done=i<0?st.length:i;
+    bar.style.width=Math.round((done+1)/total*100)+'%';
+    var back=hist.length?'<button type="button" class="mmf-back" id="mmfBack">&#8592; Voltar</button>':'<span></span>';
+    if(i<0){
+      var rows=st.map(function(s){return '<div><span>'+esc(s.k)+'</span><b>'+esc(ans[s.k])+'</b></div>';}).join('');
+      body.innerHTML='<p class="mmf-q" id="mmfQ">Tudo certo!</p><p class="mmf-h">Confira as informações. A equipe responde pelo WhatsApp para confirmar dia e horário.</p><div class="mmf-sum">'+rows+'</div><a class="mmf-go" id="mmfGo" href="'+link(true)+'" target="_blank" rel="noopener" data-direct="1">'+WA+'Enviar pelo WhatsApp</a><p class="mmf-lgpd">Ao enviar, você compartilha essas informações pelo WhatsApp apenas para o agendamento, conforme a LGPD. Conteúdo informativo. Não dispensa consulta médica e avaliação individualizada.</p><div class="mmf-nav">'+back+'</div>';
+    }else{
+      var s=st[i];
+      body.innerHTML='<p class="mmf-q" id="mmfQ">'+esc(s.q)+'</p><p class="mmf-h">'+esc(s.h)+'</p><div class="mmf-opts'+(s.one?' one':'')+'">'+s.o.map(function(o){return '<button type="button" class="mmf-o" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div><div class="mmf-nav">'+back+'<a class="mmf-skip" href="'+link(false)+'" target="_blank" rel="noopener" data-direct="1">Prefiro falar direto no WhatsApp</a></div>';
+      Array.prototype.forEach.call(body.querySelectorAll('.mmf-o'),function(b){b.addEventListener('click',function(){hist.push(s.k);ans[s.k]=b.getAttribute('data-v');render();});});
+    }
+    var bk=document.getElementById('mmfBack');
+    if(bk)bk.addEventListener('click',function(){var k=hist.pop();delete ans[k];if(k==='Atendimento')delete ans['Cidade'];render();});
+    var go=document.getElementById('mmfGo');if(go)go.addEventListener('click',function(){setTimeout(close,300);});
+    var f=body.querySelector('.mmf-o,.mmf-go');if(f)f.focus({preventScroll:true});
+  }
+  function open(){lastFocus=document.activeElement;ans={};hist=[];if(TOPIC)ans['Assunto']=TOPIC;render();ov.classList.add('on');ov.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';}
+  function close(){ov.classList.remove('on');ov.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  document.getElementById('mmfX').addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('on'))close();});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]');
+    if(!a||a.hasAttribute('data-direct'))return;
+    e.preventDefault();open();
+  });
+})();
 </script>
 </body>
 </html>
