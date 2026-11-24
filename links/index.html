@@ -106,6 +106,7 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
 .q>label,.q>p{display:block;font-size:13.5px;font-weight:700;margin-bottom:9px}
 .q>p small{font-weight:500;color:var(--text)}
 .q input{width:100%;height:50px;border-radius:14px;border:1px solid var(--line);background:var(--off);padding:0 14px;font:inherit;font-size:15px;color:var(--navy);outline:none;transition:border-color .2s}
+.plano{margin-top:12px}.plano[hidden]{display:none}.plano label{display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:6px}
 .q input:focus{border-color:var(--teal);background:#fff}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
 .opt{height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--off);font-size:13px;font-weight:600;color:var(--navy);transition:all .15s}
@@ -200,7 +201,7 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
       <div class="q" data-k="Assunto"><p>O que você procura?</p><div class="opts"><button type="button" class="opt">Próstata</button><button type="button" class="opt">Pedra nos rins</button><button type="button" class="opt">Disfunção erétil</button><button type="button" class="opt">Infertilidade</button><button type="button" class="opt">HPV e ISTs</button><button type="button" class="opt">Vasectomia</button><button type="button" class="opt">Postectomia</button><button type="button" class="opt">Dor pélvica</button><button type="button" class="opt">Incontinência urinária</button><button type="button" class="opt">Sangue na urina</button><button type="button" class="opt">Câncer urológico</button><button type="button" class="opt">Outro assunto</button></div></div>
       <div class="q" data-k="Atendimento"><p>Como prefere ser atendido?</p><div class="opts col"><button type="button" class="opt">Presencial</button><button type="button" class="opt">Telemedicina</button></div></div>
       <div class="q" data-k="Cidade" hidden><p>Em qual cidade?</p><div class="opts col"><button type="button" class="opt">Jundiaí</button><button type="button" class="opt">Marília</button><button type="button" class="opt">Ribeirão Preto</button></div></div>
-      <div class="q" data-k="Convênio ou particular"><p>Convênio ou particular?</p><div class="opts col"><button type="button" class="opt">Convênio</button><button type="button" class="opt">Particular</button><button type="button" class="opt">Ainda não sei</button></div></div>
+      <div class="q" data-k="Convênio ou particular"><p>Convênio ou particular?</p><div class="opts col"><button type="button" class="opt">Convênio</button><button type="button" class="opt">Particular</button><button type="button" class="opt">Ainda não sei</button></div><div class="plano" id="planoBox" hidden><label for="plano">Qual é o seu convênio?</label><input id="plano" name="plano" maxlength="60" placeholder="Ex.: Unimed, Bradesco, Amil" autocomplete="off"></div></div>
       <div class="q" data-k="Já é paciente"><p>Já é paciente do Dr. Mateus?</p><div class="opts col"><button type="button" class="opt">Primeira consulta</button><button type="button" class="opt">Já sou paciente</button></div></div>
       <div class="q" data-k="Melhor período"><p>Melhor período <small>(opcional)</small></p><div class="opts col"><button type="button" class="opt">Manhã</button><button type="button" class="opt">Tarde</button><button type="button" class="opt">Qualquer horário</button></div></div>
       <a class="btn send" id="send" href="https://wa.me/5517997054588" target="_blank" rel="noopener" aria-disabled="true"><svg><use href="#wa"/></svg>Enviar pelo WhatsApp</a>
@@ -239,11 +240,12 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
   /* Formulário de qualificação */
   var form=document.getElementById('form'),send=document.getElementById('send'),hint=document.getElementById('hint'),bar=document.getElementById('bar'),cnt=document.getElementById('cnt'),nome=document.getElementById('nome');
   var ans={},REQ=['Assunto','Atendimento','Cidade','Convênio ou particular','Já é paciente'];
-  var cityQ=form.querySelector('[data-k="Cidade"]');
+  var cityQ=form.querySelector('[data-k="Cidade"]'),planoBox=document.getElementById('planoBox'),plano=document.getElementById('plano');
   function pick(k,v){
     var q=form.querySelector('[data-k="'+k+'"]');
     Array.prototype.forEach.call(q.querySelectorAll('.opt'),function(b){b.setAttribute('aria-pressed',b.textContent===v?'true':'false');});
     ans[k]=v;
+    if(k==='Convênio ou particular'){planoBox.hidden=v!=='Convênio';if(!planoBox.hidden)setTimeout(function(){plano.focus();},50);}
     if(k==='Atendimento'){cityQ.hidden=v!=='Presencial';if(v!=='Presencial'){delete ans['Cidade'];Array.prototype.forEach.call(cityQ.querySelectorAll('.opt'),function(b){b.setAttribute('aria-pressed','false');});}}
     refresh();
   }
@@ -251,20 +253,20 @@ h2{font-size:19px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
     var k=q.getAttribute('data-k');
     Array.prototype.forEach.call(q.querySelectorAll('.opt'),function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){pick(k,b.textContent);});});
   });
-  function need(){var r=REQ.filter(function(k){return !(k==='Cidade'&&cityQ.hidden);});if(!nome.value.trim())r.unshift('Seu nome');return r;}
+  function need(){var r=REQ.filter(function(k){return !(k==='Cidade'&&cityQ.hidden);});if(!nome.value.trim())r.unshift('Seu nome');if(!planoBox.hidden&&!plano.value.trim())r.push('Nome do convênio');return r;}
   function refresh(){
     var all=['Seu nome'].concat(REQ.filter(function(k){return !(k==='Cidade'&&cityQ.hidden);}));
-    var miss=need().filter(function(k){return k==='Seu nome'||!ans[k];});
+    var miss=need().filter(function(k){return k==='Seu nome'||k==='Nome do convênio'||!ans[k];});
     var done=all.length-miss.length;
     bar.style.width=Math.round(done/all.length*100)+'%';cnt.textContent=done+' de '+all.length;
     if(miss.length){send.setAttribute('aria-disabled','true');hint.textContent=done?'Falta: '+miss.join(', ').toLowerCase()+'.':'Responda as perguntas para enviar.';send.href=wa(INTRO);}
     else{
       var m=INTRO+'\n\nNome: '+nome.value.trim();
-      ['Assunto','Atendimento','Cidade','Convênio ou particular','Já é paciente','Melhor período'].forEach(function(k){if(ans[k])m+='\n'+k+': '+ans[k];});
+      ['Assunto','Atendimento','Cidade','Convênio ou particular','Já é paciente','Melhor período'].forEach(function(k){if(ans[k]){m+='\n'+k+': '+ans[k];if(k==='Convênio ou particular'&&ans[k]==='Convênio'&&plano.value.trim())m+='\nPlano: '+plano.value.trim();}});
       send.setAttribute('aria-disabled','false');send.href=wa(m);hint.textContent='Tudo pronto. A equipe responde pelo WhatsApp.';
     }
   }
-  nome.addEventListener('input',refresh);
+  nome.addEventListener('input',refresh);plano.addEventListener('input',refresh);
   send.addEventListener('click',function(e){if(send.getAttribute('aria-disabled')==='true'){e.preventDefault();var first=form.querySelector('[data-k]:not([hidden])');var miss=need().filter(function(k){return k==='Seu nome'||!ans[k];});if(miss[0]==='Seu nome'){nome.focus();}else{var q=form.querySelector('[data-k="'+miss[0]+'"]');if(q)q.scrollIntoView({behavior:'smooth',block:'center'});}}});
   form.addEventListener('submit',function(e){e.preventDefault();});
 
